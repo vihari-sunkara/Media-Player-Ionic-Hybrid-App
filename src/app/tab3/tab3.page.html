@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Bluetooth
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- <button ion-button full class="submit-button" (click)="listPairedDevices()">
+    <ion-icon name="refresh"></ion-icon>&nbsp;Refresh Bluetooth Devices</button>
+  <ion-row>
+    <ion-col>
+      <ion-list radio-group [(ngModel)]="pairedDeviceID" *ngIf="listToggle">
+        <ion-item *ngFor="let i of pairedList;let j=index">
+          <ion-label>{{i.name}}</ion-label>
+          <ion-radio value="{{j}}" ></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <button ion-button full class="submit-button" *ngIf="listToggle" (click)="selectDevice()">
+    <ion-icon name="bluetooth"></ion-icon>&nbsp;Connect Bluetooth Devices</button>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Type The Data You want to Send</ion-label>
+      <ion-input type="text" name="datasend" [(ngModel)]="dataSend"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button full class="submit-button" (click)="sendData()">
+    <ion-icon name="send"></ion-icon>&nbsp;Send Data Via Bluetooth
+  </button> -->
+  <ion-list class="ion-padding">
+  <ion-button class="button button-small button-calm" (click)="startScanning()">Scan for devices&nbsp;<ion-icon name="search"></ion-icon></ion-button>
+ <!--  <button ion-button icon-end>
+  Right Icon
+  <ion-icon name="star"></ion-icon>
+</button> -->
+  <ion-list-header>
+    Paired Devices
+  </ion-list-header>
+  <ion-item color="secondary" round outline *ngFor="let device of pairedDevices">
+    {{device.name}}
+  </ion-item>
+ <!--  <button ion-button (click)="disconnect()">Disconnect</button> -->
+  <ion-button class="button button-small button-calm" (click)="disconnect()">Disconnect</ion-button>
+  <ion-list-header>
+    available Devices
+  </ion-list-header>
+  <ion-item color="secondary" *ngFor='let device of unpairedDevices'>
+    <span (click)="selectDevice(device)">
+      {{device.name}}
+      <ion-button class="success" *ngIf='pairStateList[device.name]'>Paired</ion-button>
+    </span>
+  </ion-item>
+  <ion-spinner color="danger" name="crescent" *ngIf="gettingDevices"></ion-spinner>
+</ion-list>
+</ion-content>
